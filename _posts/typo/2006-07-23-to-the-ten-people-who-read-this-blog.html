@@ -1,0 +1,5 @@
+---
+layout: post
+title: 'To the ten people who read this blog'
+---
+I'm sorry for the blog outage over the past week.  The move up to the bleeding-edge version of <a href="http://www.typosphere.org">Typo</a> brought a lot more pain than I thought it would.  I had to rewrite a lot of mine, and other people's code to get it all working the way I thought I wanted.  I ended up having to move from <a href="http://www.mysql.com/">MySQL</a> to <a href="http://www.postgres.org/">PostgreSQL</a> because of a weird <a href="http://www.rubyonrails.org/">Ruby on Rails</a> issue where it was using up all of the MySQL connections, and not letting them go.  That brought a whole new world of hurt because of MySQL's dumb way of handling boolean values.  I had to pretty much edit the insert statements by hand.  Nobody's written a good way of dumping data from a rails database out in a way that can be read in to another database.  Anyway, long story short, it's back up now.

@@ -1,0 +1,72 @@
+---
+layout: post
+title: 'Ruby Gem Abuse.'
+---
+I wanted a way to automatically tweet the new xkcd comic every day.  I have no idea why.  But I was able to whip this up in a few minutes.</br>
+</br>
+<b>Update:</b><br></br>
+So, I figured that if I was setting up a cron job to tweet XKCD, I figured I might as well broadcast to everyone when I put up a new blog post.  If you find this annoying, message me and I can turn it off.  I swear to god, I only blog every once in a blue moon, so it shouldn't be a big deal...</br>
+</br>
+<typo:code></br>
+#!/usr/bin/env ruby</br>
+require 'rubygems'</br>
+require 'open-uri'</br>
+require 'hpricot'</br>
+require 'httparty'</br>
+require 'atom'</br>
+</br>
+class XKCD</br>
+	def initialize</br>
+		@url = 'http://xkcd.com'</br>
+		@hp = Hpricot(open('http://xkcd.com'))</br>
+	end</br>
+	def comic</br>
+		info = (@hp/"h3").collect{ |inf|</br>
+			inf.inner_text.split(': ')[1]</br>
+		}</br>
+	return info</br>
+	end</br>
+end</br>
+class Twitter</br>
+	include HTTParty</br>
+	base_uri 'twitter.com'</br>
+	basic_auth 'mattrose','password'</br>
+	def initialize(user, pass)</br>
+    		self.class.basic_auth user, pass</br>
+	end</br>
+  	def post(text)</br>
+    		self.class.post('/statuses/update.json', :query => {:status => text})</br>
+  	end</br>
+end</br>
+</br>
+class Folkwolf</br>
+	def initialize</br>
+		@feed = Atom::Feed.load_feed(URI.parse("http://blog.folkwolf.net/xml/atom10/feed.xml")).entries</br>
+	end</br>
+	def latest</br>
+		latest = @feed.entries[0]</br>
+		return latest</br>
+	end</br>
+end		</br>
+		</br>
+image_url = XKCD.new.comic</br>
+feed_url = Folkwolf.new.latest.links[0].to_s</br>
+feed_updated = Folkwolf.new.latest.updated</br>
+ffile = '/tmp/.folkwolf_latest'</br>
+`touch #{ffile}`</br>
+if feed_updated != open(ffile).read</br>
+	open(ffile, 'w') { |f| f.write("#{feed_url}") }</br>
+	Twitter.post('/statuses/update.json', :query => {:status => "New Blog post: #{feed_url}"})</br>
+end</br>
+file = "/tmp/.xkcd_latest"</br>
+if RUBY_PLATFORM !~ /mswin32/</br>
+	`touch #{file}`</br>
+end</br>
+if open(file).read != image_url[0]	</br>
+	if RUBY_PLATFORM !~ /mswin32/</br>
+		open(file, 'w') { |f| f.write("#{image_url[0]}") }</br>
+	end</br>
+	Twitter.post('/statuses/update.json', :query => {:status => "d mattrose #{image_url[1]}"})</br>
+end</br>
+</typo:code></br>
+

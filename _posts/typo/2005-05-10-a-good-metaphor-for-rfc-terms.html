@@ -1,0 +1,16 @@
+---
+layout: post
+title: 'A good metaphor for RFC terms'
+---
+First, a primer on RFCs:</br>
+</br>
+All of the internet is run on RFCs.  It's the agreed upon standard for transferring data accross the internet.  If I wanted to write, say, a web server, I would look up <a href="http://www.w3.org/Protocols/rfc1945/rfc1945">RFC 1945</a> Otherwise known as version 1.0 of the HTTP RFC, and that would tell me how to serve up pages so that any web browser that also followed that document could read what my web server sent.  Consider the RFC as the "language" of HTTP.  If I speak Croatian, and you speak english, we can't understand each other, if we're both speaking the mythical language of HTTP, we can understand each other fine.  The RFC contains all of the syntactic and grammatical rules of this mythical HTTP "language"</br>
+</br>
+All of which is prelude to saying, that when an RFC says you <a href="http://www.faqs.org/rfcs/rfc2119.html">SHOULD</a> do something, that means you better have a damn good reason not to do it, or as <a href="http://bitworking.org/news/I_m_sorry__I_can_t_kiss_it_and_make_it_better_#X14">l.m orchard</a> put it:</br>
+<blockquote></br>
+'SHOULD NOT  This phrase, or the phrase "NOT RECOMMENDED" mean that there may exist valid reasons in particular circumstances when the particular behavior is acceptable or even useful, but the full implications should be understood and the case carefully weighed before implementing any behavior described with this label.'</br>
+</br>
+To me, this implies that the "you" who has to "live with it" is the implementor-- i.e. anyone who's implemented a GET as a DELETE.</br>
+</br>
+For instance, while it might be acceptable or even useful to whack yourself between the eyes with a ball-peen hammer if there happens to be a poisonous alien bug sitting there with a weakness for ball-peen hammers-- it's not really recommended in general practice.</br>
+</blockquote>

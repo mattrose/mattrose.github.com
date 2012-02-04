@@ -1,0 +1,36 @@
+---
+layout: post
+title: 'Security Consultants'
+---
+ Ugh, don't get me started on "security audits".  Most vendors are extremely</br>
+ diligent about releasing patches to security issues.  The problem is, they</br>
+ often do it by backporting the security fixes to the release that they're</br>
+ running.  This is often much preferable to releasing the updated software, </br>
+ as that may introduce changes that you don't want.</br>
+ </br>
+ The big problem with this is that when "Security consultants" run</br>
+ their automated scanners against a server, they see the banner for "Sendmail</br>
+ 8.x.x" and they say that we're running a vulnerable version of sendmail.  </br>
+</br>
+ I get handed this report with red alarm bells all over it, and I have to</br>
+ explain, yet again, that we are not running a vulnerable version of X</br>
+ software, it's just that whatever team of "security consultants" that the</br>
+ client hired are a bunch of con men who charge through the nose to run a</br>
+ TCP scan, and don't actually do any penetration testing at all.</br>
+ </br>
+ Or there's the time that the security team from a Fortune 500 high-tech firm   </br>
+ran a scan against </br>
+ our webserver and reported hundreds of perl, and php scripts that just do </br>
+ not exist anywhere on our webserver, we got a list of URLs that looked </br>
+ something like this.</br>
+</br>
+ http://<webserver>:443/cgi-bin/guestbook.pl</br>
+ </br>
+ There were hundreds of them, all of them exploitable web scripts, most of </br>
+ them were actually familiar and I knew that none of them had ever existed </br>
+ on this java webserver.  But they were all responding to the request with </br>
+ weird garbage.  It took me over an hour of going over the webserver config </br>
+ before I realized that the garbage they were getting back was encrypted </br>
+ http, because they were requesting http over the https port.  So the </br>
+ garbage they were getting back was an encrypted 404 message.</br>
+

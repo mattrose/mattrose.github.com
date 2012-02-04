@@ -1,0 +1,11 @@
+---
+layout: post
+title: Forget 200 lines, Red Hat speeds up Linux with 4 lines of code - InternetNews:The
+  Blog - Sean Michael Kerner
+tags: 
+---
+<a href="http://blog.internetnews.com/skerner/2010/11/forget-200-lines-red-hat-speed.html">Forget 200 lines, Red Hat speeds up Linux with 4 lines of code - InternetNews:The Blog - Sean Michael Kerner</a><br/><p>Not only that.  Userspace code.  I&#8217;ll have to try this on my Linux box.</p>
+<blockquote>
+<p><span>To his credit Poettering did come back with a response to prove Torvalds wrong. Poettering provided a non kernelspace patch that speeds up Linux systems. The patch involved a simple edit of a users <em>~/.bashrc file </em>with four new lines of code<em>.</em><br/><br/><pre>  if [ "$PS1" ] ; then  <br/>          mkdir -m 0700 /sys/fs/cgroup/cpu/user/$$<br/>          echo $$ &gt; /sys/fs/cgroup/cpu/user/$$/tasks<br/>  fi<br/>Then, as the superuser do this:<br/><br/>  mount -t cgroup cgroup /sys/fs/cgroup/cpu -o cpu<br/>  mkdir -m 0777 /sys/fs/cgroup/cpu/user</pre>
+</span></p>
+</blockquote>

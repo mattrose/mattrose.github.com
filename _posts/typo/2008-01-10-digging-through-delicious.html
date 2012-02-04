@@ -1,0 +1,22 @@
+---
+layout: post
+title: 'Digging through delicious'
+---
+I use <a href="http://del.icio.us">del.icio.us</a> to use as a general bookmarking site.  It's great for when I come across something I want to reference later, or read later, or blog about later.  I've been using it somewhat promiscuously, making up tags or using ones that other people had used.   Consequently, I have hundreds of tags, which decreases the usefulness, IMO.  Luckily, del.icio.us has a great, easy to use <a href="http://del.icio.us/help/api/">API reference</a> that makes it easy to write a quick ruby script that makes batch tag renames easy.  I wrote up the quick little ruby script.  This changes every tag from macosx to mac.  To change the tags, I just changed the first variables in the script.</br>
+<typo:code></br>
+require 'net/https'</br>
+</br>
+old_tag = "macosx"</br>
+new_tag = "mac"</br>
+</br>
+http = Net::HTTP.new('api.del.icio.us', 443)</br>
+http.use_ssl = true</br>
+http.start do |http|</br>
+  request = Net::HTTP::Get.new("/v1/tags/rename?old=#{old_tag}&new=#{new_tag}")</br>
+  request.basic_auth('mattrose', 'foobar')</br>
+  response = http.request(request)</br>
+  puts response.body</br>
+end </br>
+</typo:code></br>
+</br>
+This is of course a long way of saying, that, while I was going through delicious, I found this, and this guy speaks for me when it comes to <a href="http://www.slackermanager.com/2006/04/how-to-avoid-office-politics.html">office politics</a>
