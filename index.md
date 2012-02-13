@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hello World!
+title: Folkwolf.net
 ---
 {% include JB/setup %}
 
