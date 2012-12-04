@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+### TODO
+# change <hr> to <br>--
+# fix conversations
+# maybe put the crap in a map so that I don't have to write everything 7 times
+
 require 'open-uri'
 require 'json'
 require 'rubygems'
